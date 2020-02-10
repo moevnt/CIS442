@@ -19,6 +19,14 @@ public class BinarySearchTree<AnyType extends Comparable<AnyType>> {
 		this(null);
 	}
 
+	public BinaryNode getRoot(){
+		return root;
+	}
+
+	public static void setRoot(BinaryNode root) {
+		BinarySearchTree.root = root;
+	}
+
 	public BinarySearchTree(Comparator<? super AnyType> c) {
 		root = null;
 		cmp = c;
@@ -124,35 +132,84 @@ public class BinarySearchTree<AnyType extends Comparable<AnyType>> {
 			return false;
 	}
 
+	public int countNodes(BinaryNode<AnyType> t){
+		return countNodes(t,1);
+	}
+
+	private int countNodes(BinaryNode<AnyType> t, int count){
+		if (t.right == null && t.left == null) { // is leaf
+			System.out.println(t.element);
+			return count;
+		}
+		 if (t.right !=null && t.left == null) { // only 1 child
+			System.out.println(t.element);
+			 return countNodes(t.right, count++);
+		 }
+		 if (t.right == null && t.left != null) {
+			 System.out.println(t.element);
+			 return countNodes(t.left, count++);
+		 }
+		else{
+			System.out.println(t.element);
+			countNodes(t.right,count++);
+			return countNodes(t.left,count++);
+		}
+	}
+
+	public int countLeaves(BinaryNode<AnyType> t, int count){
+		if (t.isLeaf()) { // is leaf
+			return count++;
+		}
+		if (t.right !=null && t.left == null) { // only 1 child
+			return countNodes(t.right, count++);
+		}
+		if (t.right == null && t.left != null) {
+			return countNodes(t.left, count++);
+		}
+		else{
+			System.out.println(t.element);
+			return countNodes(t.left,count++);
+		}
+	}
+
+	private boolean isLeaf(BinaryNode<AnyType> t){
+		if (t.right == null && t.left == null)
+			return true;
+		else
+			return false;
+	}
+
+//	public int sumOfNodes(BinaryNode<AnyType> t){
+//		if (t.right == null && t.left == null) { // is leaf
+//			return count;
+//		}
+//		if (t.right !=null && t.left == null) { // only 1 child
+//			return countNodes(t.right, count++);
+//		}
+//		if (t.right == null && t.left != null) {
+//			return countNodes(t.left, count++);
+//		}
+//		else{
+//			countNodes(t.right,count++);
+//			return countNodes(t.left,count++);
+//		}
+//	}
+
+
 	public static void main(String[] args){
-		BinarySearchTree tree = new BinarySearchTree();
-		BinarySearchTree t2 = new BinarySearchTree();
+		BinarySearchTree t1 = new BinarySearchTree();
 
-		tree.root = new BinaryNode(21);
-		t2.root = new BinaryNode(21);
-		tree.insert(18,tree.root);
+		root = new BinaryNode(21);
 
+		//create tree 1
 		for(int i=0;i<10;i++){
 			int temp = (int) (100*Math.random());
-			tree.insert(temp, tree.root);
-		}
-		for(int i=0;i<10;i++){
-			int temp = (int) (100*Math.random());
-			t2.insert(temp, t2.root);
+			t1.insert(temp, t1.getRoot());
 		}
 
-		System.out.println(t2.root.toString());
 
-//		System.out.println(tree.contains(18,root));
-		System.out.print(tree.root.toString());
-//
-//		tree.remove(21,root);
-//		System.out.print(root.toString());
-//
-//		tree.printRange(20,30,root);
-
-		System.out.println(tree.isSimilar(tree.root,t2.root));
-		//System.out.println("Max: " + tree.findMax(root));
-		//System.out.println("Min: " + tree.findMin(root));
+		System.out.print(root.toString());
+		System.out.println();
+		//System.out.println(t1.countLeaves(root));
 	}
 }
