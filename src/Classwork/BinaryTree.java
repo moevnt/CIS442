@@ -1,8 +1,8 @@
 package Classwork;
 
 //import sun.invoke.empty.Empty;
-
-public class BinaryTree <AnyType>{
+import java.util.Comparator;
+public class BinaryTree <AnyType extends Comparable<AnyType>>{
 	private static BinaryNode root;
 
 	public BinaryTree(){
@@ -70,18 +70,77 @@ public class BinaryTree <AnyType>{
 		return sum;
 	}
 
+	public int sameNodes(BinaryNode t){
+		int count = 0;
+		for (int i=0;i<size();i++){
+			if(t.left != null && t.right != null)
+				if(t.left.element == t.right.element)
+					count++;
+		}
+		return count;
+	}
+
+	public int longestPatternWithRoot(BinaryNode t){
+		int count = 0;
+		return longestPatternWithRoot(t,count);
+	}
+
+	private int longestPatternWithRoot(BinaryNode t, int count){
+		int element = (int) t.element;
+		int left=0, right=0;
+
+		if(t.left != null)
+			 left = (int) t.left.element;
+		if(t.right != null)
+			right = (int) t.right.element;
+		if (right<element && left<element) {
+			System.out.println(element);
+			return ++count;
+		}
+		else if(right>element && left>element){
+			longestPatternWithRoot(t.left,++count);
+			return longestPatternWithRoot(t.right,count);
+		}
+		else if (right>element)
+			return longestPatternWithRoot(t.right,++count);
+		else {
+			System.out.println(element);
+			return longestPatternWithRoot(t.left, ++count);
+		}
+	}
+	public int longestPattern(BinaryNode t){
+		int count = 0;
+		/*
+		while(node has children)
+			Look at given node
+			compare to children
+			if(children > node)
+				follow node and increase count if the current length is greater than count and increase reference node
+			if(children < node)
+				follow node and increase reference node
+		 */
+		return count;
+	}
 
 	public static void main(String[] args){
 		BinaryTree tree = new BinaryTree<>();
 
 		root = new BinaryNode(21);
 
-		for (int i=0;i<10;i++){
-			int insert = (int) (Math.random()*100);
-			tree.insert(insert,root);
-		}
+	//	tree.insert(20,root);
+		tree.insert(22,root);
+		tree.insert(23,root);
+		tree.insert(24,root);
+		tree.insert(25,root);
+
+//		for (int i=0;i<10;i--){
+//			//int insert = (int) (Math.random()*100);
+//			tree.insert(i+22,root);
+//		}
 		System.out.println(root.toString());
 		System.out.println("Sum: "+tree.sum(root));
 		System.out.println("number of even: "+tree.evenItems(root));
+		System.out.println("Number of same: "+tree.sameNodes(root));
+		System.out.println("Length: " + tree.longestPattern(root));
 	}
 }
