@@ -59,6 +59,10 @@ public class SeperateChaininghashTable<AnyType> {
 		return hashValue;
 	}
 
+	private int reHash(AnyType x){
+		return hash(x);
+	}
+
 	private static int nextPrime(int n){
 		if(n % 2 == 0)
 			n++;
@@ -82,10 +86,11 @@ public class SeperateChaininghashTable<AnyType> {
 	public static void main(String[] args){
 		SeperateChaininghashTable<Character> ht = new SeperateChaininghashTable<>();
 
-		ht.insert('a');
+
 		ht.insert('b');
 		ht.insert('c');
 		ht.insert('d');
+		ht.insert('a');
 
 		ht.printTable();
 	}

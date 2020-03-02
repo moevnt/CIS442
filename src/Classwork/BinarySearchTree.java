@@ -204,20 +204,16 @@ public class BinarySearchTree<AnyType extends Comparable<AnyType>> {
 	public static void main (String[] args) {
 
 		BinarySearchTree<Integer> bst = new BinarySearchTree<>();
-		root = new BinaryNode(21);
+		root = new BinaryNode(3);
 
-		bst.insert(30, root);
-		bst.insert(10, root);
-		bst.insert(14, root);
-		bst.insert(16, root);
-		bst.insert(15, root);
-		bst.insert(8, root);
-		bst.insert(4, root);
-		bst.insert(2, root);
-		bst.insert(6, root);
-		bst.insert(46, root);
-		bst.insert(39, root);
-		bst.insert(69, root);
+		bst.insert(6,root);
+		bst.insert(5,root);
+		bst.insert(2,root);
+		bst.insert(4,root);
+		bst.insert(7,root);
+		bst.insert(1,root);
+
+
 
 	/*	for(int i=0;i<10;i++){
 			int temp = (int) (100*Math.random());
@@ -226,12 +222,12 @@ public class BinarySearchTree<AnyType extends Comparable<AnyType>> {
 */
 		System.out.println(root.toString());
 		System.out.println();
-		System.out.println("Full Nodes: "+bst.countFullNodes(root));
-		System.out.println("Count: " + bst.countNodes(root));
-		System.out.println("Leaf count: "+bst.countLeaf(root));
-		System.out.println("Min: " + bst.findMin(root));
-		System.out.println("Max: " + bst.findMax(root));
-		System.out.println("STOP: "+bst.searchTreeOrderProperty(root));
+//		System.out.println("Full Nodes: "+bst.countFullNodes(root));
+//		System.out.println("Count: " + bst.countNodes(root));
+//		System.out.println("Leaf count: "+bst.countLeaf(root));
+//		System.out.println("Min: " + bst.findMin(root));
+//		System.out.println("Max: " + bst.findMax(root));
+//		System.out.println("STOP: "+bst.searchTreeOrderProperty(root));
 
 	}
 }
