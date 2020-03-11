@@ -5,33 +5,35 @@ import java.util.*;
 
 public class HashSet<AnyType>{
 
-
-
-	private LinkedHashSet<LinkedHashSet<AnyType>> [] sets;
 	private static final int DEFAULT_TABLE_SIZE = 7;
-//	private Iterator iterator = sets.iterator();
+	private List<AnyType> [] theLists;
+	private int currentSize;
 
 	public HashSet(){
 		this(DEFAULT_TABLE_SIZE);
 	}
 
 	public HashSet(int size){
-		sets = new LinkedHashSet<AnyType>(nextPrime(size));
-		for (int i=0;i<sets.length;i++)
-			sets[i] = new LinkedHashSet<>();
+		theLists = new LinkedList[nextPrime(size)];
+		for(int i=0;i<theLists.length;i++)
+			theLists[i] = new LinkedList<>();
 	}
 
 	public void insert(AnyType x){
-
+		List<AnyType> whichList = theLists[hash(x)];
+		if(!whichList.contains(x)){
+			whichList.add(x);
+			currentSize++;
+		}
 	}
 
 	private int hash(AnyType x){
 		int hashValue = x.hashCode();
 
-		hashValue %= sets.size();
+		hashValue %= theLists.length;
 
 		if (hashValue < 0)
-			hashValue += sets.size();
+			hashValue += theLists.length;
 
 		return hashValue;
 	}

@@ -21,7 +21,7 @@ public class SeperateChaininghashTable<AnyType> {
 
 	public void insert(AnyType x){
 		List<AnyType> whichList = theLists[hash(x)];
-		if(!whichList.contains(x)){
+		if(whichList.contains(x)){
 			whichList.add(x);
 			currentSize++;
 		}
@@ -34,7 +34,7 @@ public class SeperateChaininghashTable<AnyType> {
 
 	public void remove(AnyType x){
 		List<AnyType> whichList = theLists[hash(x)];
-		if(whichList.contains(x)) {
+		if(!whichList.contains(x)) {
 			whichList.remove(x);
 			currentSize--;
 		}
@@ -91,6 +91,7 @@ public class SeperateChaininghashTable<AnyType> {
 		ht.insert('c');
 		ht.insert('d');
 		ht.insert('a');
+		ht.insert('c');
 
 		ht.printTable();
 	}
