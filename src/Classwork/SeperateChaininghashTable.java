@@ -1,10 +1,7 @@
 package Classwork;
 
-import java.io.*;
-import java.sql.Time;
 import java.util.List;
 import java.util.LinkedList;
-import java.util.Timer;
 
 public class SeperateChaininghashTable<AnyType> {
 
@@ -24,13 +21,10 @@ public class SeperateChaininghashTable<AnyType> {
 
 	public void insert(AnyType x){
 		List<AnyType> whichList = theLists[hash(x)];
-		double loadFactor = currentSize/theLists.length;
-
-		if (!whichList.contains(x)) {
+		if(whichList.contains(x)){
 			whichList.add(x);
 			currentSize++;
 		}
-
 	}
 
 	public boolean contains(AnyType x){
@@ -40,7 +34,7 @@ public class SeperateChaininghashTable<AnyType> {
 
 	public void remove(AnyType x){
 		List<AnyType> whichList = theLists[hash(x)];
-		if(whichList.contains(x)) {
+		if(!whichList.contains(x)) {
 			whichList.remove(x);
 			currentSize--;
 		}
@@ -65,19 +59,8 @@ public class SeperateChaininghashTable<AnyType> {
 		return hashValue;
 	}
 
-	private void reHash(){
-		List<AnyType> [] oldList = theLists;
-
-		theLists = new List[nextPrime(2 * theLists.length)];
-		for (int i=0;i<theLists.length;i++){
-			theLists[i] = new LinkedList<>();
-		}
-
-		currentSize = 0;
-		for (int i=0; i<oldList.length;i++){
-			for (AnyType item : oldList[i])
-				insert(item);
-		}
+	private int reHash(AnyType x){
+		return hash(x);
 	}
 
 	private static int nextPrime(int n){
@@ -100,24 +83,17 @@ public class SeperateChaininghashTable<AnyType> {
 		return true;
 	}
 
-	public static void main(String[] args) throws Exception {
-		SeperateChaininghashTable<String> ht = new SeperateChaininghashTable<>(500);
-		File file = new File("/home/evan/IdeaProjects/CIS442/src/HW2/500-worst-passwords.txt");
-
-		BufferedReader br = new BufferedReader(new FileReader(file));
-
-		long currentTime = System.currentTimeMillis();
-		String st;
-		while ((st = br.readLine()) != null)
-			ht.insert(st);
+	public static void main(String[] args){
+		SeperateChaininghashTable<Character> ht = new SeperateChaininghashTable<>();
 
 
+		ht.insert('b');
+		ht.insert('c');
+		ht.insert('d');
+		ht.insert('a');
+		ht.insert('c');
 
-		System.out.println(ht.contains("biteme"));
-		System.out.println(ht.contains("TrumpMAGATrump"));
-		System.out.println(ht.contains("ILoveAlgorithms"));
-		System.out.println(System.currentTimeMillis()-currentTime);
-
+		ht.printTable();
 	}
 
 }
