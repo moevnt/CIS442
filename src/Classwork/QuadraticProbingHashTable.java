@@ -1,6 +1,10 @@
 package Classwork;
 
 import javax.swing.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -80,8 +84,9 @@ public class QuadraticProbingHashTable<AnyType> {
 		while(array[currentPos] != null && !array[currentPos].element.equals(x)){
 			currentPos += offset;
 			offset += 2;
-			if(currentPos <= array.length)
+			if(currentPos >= array.length)
 				currentPos -= array.length;
+
 		}
 		return currentPos;
 	}
@@ -140,15 +145,46 @@ public class QuadraticProbingHashTable<AnyType> {
 		System.out.println();
 	}
 
-	public static void main(String[] args) {
-		QuadraticProbingHashTable qt = new QuadraticProbingHashTable();
+	public static void main(String[] args) throws Exception {
+		QuadraticProbingHashTable ints = new QuadraticProbingHashTable(1009);
+
+		long currentTime = System.currentTimeMillis();
+		for (int i= 0;i<500;i++){
+			ints.insert((int)(Math.random()*100));
+		}
+		System.out.println(ints.contains(99));
+		System.out.println(ints.contains(55));
+		System.out.println(ints.contains(11));
+		System.out.println(System.currentTimeMillis()-currentTime);
 
 
-		qt.insert(4592);
-		qt.insert(4581);
-		qt.insert(4682);
+		QuadraticProbingHashTable strings = new QuadraticProbingHashTable(1009);
+		currentTime = System.currentTimeMillis();
+		for (int i= 0;i<500;i++){
+			ints.insert(""+(Math.random()*100));
+		}
+		System.out.println(ints.contains("99"));
+		System.out.println(ints.contains("55"));
+		System.out.println(ints.contains("11"));
+		System.out.println(System.currentTimeMillis()-currentTime);
 
-		qt.printTable();
+
+		QuadraticProbingHashTable dictionary = new QuadraticProbingHashTable(1009);
+		File file = new File("/home/evan/IdeaProjects/CIS442/src/HW2/500-worst-passwords.txt");
+
+		BufferedReader br = new BufferedReader(new FileReader(file));
+
+		currentTime = System.currentTimeMillis();
+		String st;
+		for(int i=0;i<500;i++) {
+			st = br.readLine();
+			dictionary.insert(st);
+		}
+
+
+		System.out.println(dictionary.contains("biteme"));
+		System.out.println(dictionary.contains("TrumpMAGATrump"));
+		System.out.println(dictionary.contains("ILoveAlgorithms"));
+		System.out.println(System.currentTimeMillis()-currentTime);
 	}
-
 }

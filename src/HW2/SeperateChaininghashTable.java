@@ -1,10 +1,12 @@
-package Classwork;
+package HW2;
 
-import java.io.*;
-import java.sql.Time;
-import java.util.List;
+import Classwork.QuadraticProbingHashTable;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.util.LinkedList;
-import java.util.Timer;
+import java.util.List;
 
 public class SeperateChaininghashTable<AnyType> {
 
@@ -101,12 +103,36 @@ public class SeperateChaininghashTable<AnyType> {
 	}
 
 	public static void main(String[] args) throws Exception {
+
+		SeperateChaininghashTable ints = new SeperateChaininghashTable(1009);
+
+		long currentTime = System.currentTimeMillis();
+		for (int i= 0;i<500;i++){
+			ints.insert((int)(Math.random()*100));
+		}
+		System.out.println(ints.contains(99));
+		System.out.println(ints.contains(55));
+		System.out.println(ints.contains(11));
+		System.out.println(System.currentTimeMillis()-currentTime);
+
+
+		SeperateChaininghashTable strings = new SeperateChaininghashTable(500);
+		currentTime = System.currentTimeMillis();
+		for (int i= 0;i<500;i++){
+			strings.insert(""+(Math.random()*100));
+		}
+		System.out.println(strings.contains("99"));
+		System.out.println(strings.contains("55"));
+		System.out.println(strings.contains("11"));
+		System.out.println(System.currentTimeMillis()-currentTime);
+
+
 		SeperateChaininghashTable<String> ht = new SeperateChaininghashTable<>(500);
 		File file = new File("/home/evan/IdeaProjects/CIS442/src/HW2/500-worst-passwords.txt");
 
 		BufferedReader br = new BufferedReader(new FileReader(file));
 
-		long currentTime = System.currentTimeMillis();
+		currentTime = System.currentTimeMillis();
 		String st;
 		while ((st = br.readLine()) != null)
 			ht.insert(st);
@@ -117,7 +143,6 @@ public class SeperateChaininghashTable<AnyType> {
 		System.out.println(ht.contains("TrumpMAGATrump"));
 		System.out.println(ht.contains("ILoveAlgorithms"));
 		System.out.println(System.currentTimeMillis()-currentTime);
-
 	}
 
 }
