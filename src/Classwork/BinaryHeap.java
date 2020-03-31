@@ -162,6 +162,8 @@ public class BinaryHeap <AnyType extends Comparable<? super AnyType>> {
 		System.out.println();
 	}
 
+
+
 	public static void main(String [] args){
 
 		BinaryHeap<Integer> h = new BinaryHeap<>();
