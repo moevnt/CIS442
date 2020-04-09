@@ -90,6 +90,8 @@ public class SortingAlgorithms<AnyType extends Comparable<AnyType>>  {
 		}
 	}
 
+	
+
 	public static <AnyType extends Comparable<? super AnyType>> void mergeSort(AnyType[] a ){
 		AnyType[] tmpArray = (AnyType[] ) new Comparable[a.length];
 		mergeSort(a,tmpArray,0,a.length-1);
@@ -127,8 +129,7 @@ public class SortingAlgorithms<AnyType extends Comparable<AnyType>>  {
 			a[rightEnd] = tmpArray[rightEnd];
 	}
 
-	private static <AnyType extends Comparable<? super AnyType>> void percDown( AnyType [ ] a, int i, int n )
-	{
+	private static <AnyType extends Comparable<? super AnyType>> void percDown( AnyType [ ] a, int i, int n ) {
 		int child;
 		AnyType tmp;
 
@@ -145,8 +146,7 @@ public class SortingAlgorithms<AnyType extends Comparable<AnyType>>  {
 		a[ i ] = tmp;
 	}
 
-	public static <AnyType extends Comparable<? super AnyType>>
-	void heapsort( AnyType [ ] a ) {
+	public static <AnyType extends Comparable<? super AnyType>> void heapsort( AnyType [ ] a ) {
 		for (int i = a.length / 2 - 1; i >= 0; i--)  /* buildHeap */
 			percDown(a, i, a.length);
 		for (int i = a.length - 1; i > 0; i--) {
@@ -155,11 +155,14 @@ public class SortingAlgorithms<AnyType extends Comparable<AnyType>>  {
 		}
 	}
 
-	public static <AnyType> void swapReferences( AnyType [ ] a, int index1, int index2 )
-	{
+	public static <AnyType> void swapReferences( AnyType [ ] a, int index1, int index2 ) {
 		AnyType tmp = a[ index1 ];
 		a[ index1 ] = a[ index2 ];
 		a[ index2 ] = tmp;
+	}
+
+	public static <AnyType extends Comparable<? super AnyType>> void quickSort(){
+
 	}
 
 	private static<AnyType> void printArray(AnyType[] list){
