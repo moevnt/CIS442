@@ -29,6 +29,7 @@ public class SortingAlgorithms<AnyType extends Comparable<AnyType>>  {
 			}
 
 			if(currentMinIndex != i){
+				AnyType tmp =
 				list[currentMinIndex] = list[i];
 				list[i] = currentMin;
 			}
@@ -182,7 +183,7 @@ public class SortingAlgorithms<AnyType extends Comparable<AnyType>>  {
 		}
 
 		//Merge Sort
-		mergeSort(list);
+		selectionSort(list);
 		printArray(list);
 
 		//heap sort

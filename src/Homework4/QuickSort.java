@@ -1,7 +1,7 @@
 package Homework4;
 
 public class QuickSort {
-	private static final int CUTOFF = 10;
+	private static final int CUTOFF = 3;
 
 	public static <AnyType extends Comparable<? super AnyType>> void quicksort( AnyType [ ] a ){
 		quicksort( a, 0, a.length - 1 );
@@ -10,7 +10,7 @@ public class QuickSort {
 	private static <AnyType extends Comparable<? super AnyType>> void quicksort( AnyType [ ] a, int left, int right ){
 		if( left + CUTOFF <= right )
 		{
-			AnyType pivot = a[(left+right) / 2];
+			AnyType pivot =median3(a,left,right);
 
 			// Begin partitioning
 			int i = left, j = right - 1;
@@ -25,7 +25,7 @@ public class QuickSort {
 			}
 
 			swapReferences( a, i, right - 1 );   // Restore pivot
-
+			printArray(a);
 			quicksort( a, left, i - 1 );    // Sort small elements
 			quicksort( a, i + 1, right );   // Sort large elements
 		}
@@ -90,9 +90,9 @@ public class QuickSort {
 			a[i] = (int)(Math.random()*1000);
 		}
 
-		//printArray(a);
+		System.out.print("initial ");printArray(a);
 		quicksort(a);
-		printArray(a);
+		System.out.print("final ");printArray(a);
 	}
 
 	private static<AnyType> void printArray(AnyType[] list){

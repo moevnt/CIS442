@@ -25,19 +25,19 @@ public class ShellSort {
 		for (k = 1; Math.pow(2, k) - 1 < list.length; k++) {
 
 		}
+			for (int m = k; m >= 2; m--) {
 
-		for (int m = k; m >= 2; m--) {
+				int gap = (int) (Math.pow(2, m) - 1);
+				for (int i = gap; i < list.length; i++) {
 
-			int gap = (int) (Math.pow(2, m) - 1);
-			for (int i = gap; i < list.length; i++) {
+					AnyType tmp = list[i];
+					for (j = i; j >= gap && tmp.compareTo(list[j - gap]) < 0; j -= gap)
+						list[j] = list[j - gap];
 
-				AnyType tmp = list[i];
-				for (j = i; j >= gap && tmp.compareTo(list[j - gap]) < 0; j -= gap)
-					list[j] = list[j - gap];
-
-				list[j] = tmp;
+					list[j] = tmp;
+				}
 			}
-		}
+
 	}
 	public static <AnyType extends Comparable<AnyType>> void shellSortKnuth(AnyType[] list) {
 
