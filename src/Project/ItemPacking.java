@@ -31,19 +31,21 @@ public class ItemPacking {
 
 	public static void main(String[] args){
 		Item[] arr = new Item[5];
-		BoxQueue qu = new BoxQueue(5);
+		BoxQueue qu = new BoxQueue(6);
 
-		for (int i=0;i<qu.size;i++) {
-			arr[i] = new Item(.5);
-			qu.insert(0.0);
+		for (int i=0;i<5;i++) {
+	//		arr[i] = new Item(.5);
+			qu.insert(1.0);
 		}
+		qu.remove();
+		qu.insert(1.2);
 
+//
+//		ItemPacking pack = new ItemPacking(arr,qu);
+//		pack.givenOrder();
 
-		ItemPacking pack = new ItemPacking(arr,qu);
-		pack.givenOrder();
-
-		while(!queue.isEmpty()){
-			System.out.println(queue.remove());
+		while(!qu.isEmpty()){
+			System.out.println(qu.remove());
 		}
 
 	}

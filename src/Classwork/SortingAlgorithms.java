@@ -174,21 +174,13 @@ public class SortingAlgorithms<AnyType extends Comparable<AnyType>>  {
 	}
 
 	public static void main(String [] args){
-		Integer[] list = new Integer[10];
-		Integer[] heap = new Integer[10];
+		Integer[] list1 = {1,3,5,7,2};
+		int[] list2 = {2,4,6,8};
 
-		for(int i=0;i< list.length;i++) {
-			list[i] = 1 + (int) (Math.random() * 100);
-			heap[i] = 1 + (int) (Math.random() * 100);
-		}
-
-		//Merge Sort
-		selectionSort(list);
-		printArray(list);
-
-		//heap sort
-		heapsort(list);
-		printArray(list);
+		mergeSort(list1);
+		printArray(list1);
 	}
+
+
 
 }
