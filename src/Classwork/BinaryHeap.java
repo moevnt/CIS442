@@ -29,8 +29,6 @@ public class BinaryHeap <AnyType extends Comparable<? super AnyType>> {
 		buildHeap();
 	}
 
-
-
 	public void insert(Integer x){
 		if (currentSize == array.length-1)
 			enlargeArray(array.length*2+1);

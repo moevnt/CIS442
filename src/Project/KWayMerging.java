@@ -13,10 +13,10 @@ public class KWayMerging {
 		return sorted;
 	}
 
-	private static ArrayList<Integer> merging(List<ArrayList<Integer>> lists, ArrayList<Integer> sorted){
+	private static ArrayList<Integer> merging(ArrayList<ArrayList<Integer>> lists, ArrayList<Integer> sorted){
 
-		if(lists.size() == 1)
-			sorted = mer(lists.get(0), sorted);
+		if(lists.size() == 2)
+			sorted = mer(lists.get(0), lists.get(1));
 
 		else{
 			merging(breakdown(lists,0,lists.size()/2), sorted);
@@ -26,10 +26,10 @@ public class KWayMerging {
 		return sorted;
 	}
 
-	private static List<ArrayList<Integer>> breakdown(List<ArrayList<Integer>> list, int start, int stop){
+	private static ArrayList<ArrayList<Integer>> breakdown(ArrayList<ArrayList<Integer>> list, int start, int stop){
 		ArrayList<ArrayList<Integer>> newList = new ArrayList<>();
 
-		for (int i =start;i<stop;i++){
+		for (int i = start;i<stop;i++){
 			newList.add(list.get(i));
 		}
 
@@ -40,22 +40,24 @@ public class KWayMerging {
 		int a=0, b=0;
 		ArrayList<Integer> sorted = new ArrayList<>(list1.size()*list2.size());
 
-		for (int i=0;i<=sorted.size();i++){
-			if(a == list1.size()){
-				sorted.add(list2.get(b));
-				b++;
-			}
-			else if(b == list2.size()){
-				sorted.add(list1.get(a));
-				a++;
-			}
-			else if (list1.get(a) < list2.get(b)){
-				sorted.add(list1.get(a));
-				a++;
-			}
-			else if(list2.get(b) < list1.get(a)){
-				sorted.add(list2.get(b));
-				b++;
+		if (list2.isEmpty()) {
+			return list1;
+		}
+		else {
+			for (int i = 0; i <= list1.size()+list2.size()-1; i++) {
+				if (a == list1.size()) {
+					sorted.add(list2.get(b));
+					b++;
+				} else if (b == list2.size()) {
+					sorted.add(list1.get(a));
+					a++;
+				} else if (list1.get(a) < list2.get(b)) {
+					sorted.add(list1.get(a));
+					a++;
+				} else if (list2.get(b) < list1.get(a)) {
+					sorted.add(list2.get(b));
+					b++;
+				}
 			}
 		}
 		return sorted;
@@ -82,17 +84,19 @@ public class KWayMerging {
 
 		list.add(list1);
 		list.add(list2);
-//		list.add(list3);
-//		list[3] = list4;
+		list.add(list3);
+		list.add(list4);
 
 		//KWayMerging merge = new KWayMerging(list);
 	//	KWay(list);
 
 
 		ArrayList<Integer> sort = KWay(list);
+	//	ArrayList<ArrayList<Integer>> a = breakdown(list,0,list.size()/2);
+		//System.out.print(a.size());
 
-		for(int item:sort){
-			System.out.print(item + " ");
+		for(int i =0;i<sort.size();i++){
+			System.out.print(sort.get(i) + ", ");
 		}
 		System.out.println();
 	}
