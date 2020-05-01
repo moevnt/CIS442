@@ -28,8 +28,6 @@ public class KWayMerge {
 				if(list.get(j).isEmpty())
 					list.remove(j);
 			}
-
-
 		}
 		return sorted;
 	}
@@ -52,7 +50,7 @@ public class KWayMerge {
 			s3.push((i*2)+10);
 			s4.push((i*2)+9);
 		}
-
+		
 		ArrayList<Stack<Integer>> list = new ArrayList<>();
 		list.add(s1);
 		list.add(s2);

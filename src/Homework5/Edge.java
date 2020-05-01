@@ -1,6 +1,5 @@
-package Classwork;
+package Homework5;
 
-import java.util.*;
 public class Edge {
 	public Vertex dest;
 	public double cost;
@@ -10,4 +9,7 @@ public class Edge {
 		this.cost = cost;
 	}
 
+	public Vertex getDest(){
+		return dest;
+	}
 }
