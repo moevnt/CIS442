@@ -6,13 +6,17 @@ public class Vertex {
 
 	public String name;
 	public List<Edge> adj;
-	public double dist;
+	public int dist;
 	public Vertex prev;
 	public int ID;
+	public double inDegree;
+	public int topNumber;
 
 	public Vertex(String name){
 		this.name = name;
 		adj = new LinkedList<Edge>();
+		inDegree=0;
+		dist = Integer.MAX_VALUE;
 	}
 
 	public void addEdge(Edge edge){
@@ -23,39 +27,8 @@ public class Vertex {
 		return adj;
 	}
 
-	public void setAdj(List<Edge> adj) {
-		this.adj = adj;
-	}
-
-	public double getDist() {
-		return dist;
-	}
-
-	public Vertex getPrev() {
-		return prev;
-	}
-
-	public void setPrev(Vertex prev) {
-		this.prev = prev;
-	}
-
-	public void setID(int ID) {
-		this.ID = ID;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public int getID() {
 		return ID;
 	}
 
-	public void setDist(double dist) {
-		this.dist = dist;
-	}
 }
